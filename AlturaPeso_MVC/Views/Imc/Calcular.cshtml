@@ -1,0 +1,57 @@
+@model CadastroAlunosApp.Models.ImcModel
+
+@{
+    ViewData["Title"] = "Cálculo de IMC";
+}
+
+<div class="container mt-4">
+    <h2>Cálculo de IMC (Server Side)</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            
+            @* Sumário de validação para expor erros ocultos *@
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <form asp-action="Calcular" method="post" class="g-3">
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label">Nome</label>
+                    <input asp-for="Nome" class="form-control" placeholder="Ex: João Silva" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Peso" class="form-label">Peso (kg)</label>
+                    <input asp-for="Peso" class="form-control" type="text" placeholder="Ex: 75.5 ou 75,5" />
+                    <span asp-validation-for="Peso" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Altura" class="form-label">Altura (m)</label>
+                    <input asp-for="Altura" class="form-control" type="text" placeholder="Ex: 1.75 ou 1,75" />
+                    <span asp-validation-for="Altura" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Calcular IMC</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            @if (Model.ResultadoImc != null)
+            {
+                <div class="card border-success bg-light text-center p-4 shadow-sm mt-4 mt-md-0">
+                    <div class="card-body">
+                        <h3 class="card-title text-success">Resultado para @Model.Nome</h3>
+                        <p class="card-text fs-4 mt-3">Seu IMC é: <strong>@Model.ResultadoImc</strong></p>
+                        <p class="card-text fs-5">Classificação: <span class="badge bg-success">@Model.Classificacao</span></p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

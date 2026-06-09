@@ -12,5 +12,6 @@ Esta aplicação foi desenvolvida para a atividade prática utilizando o padrão
 5. A Controller anexa o resultado de volta ao modelo e renderiza a tela exibindo o IMC e sua respectiva classificação.
 
 ## Demonstração da Aplicação
-![Print da Aplicação](./Print/print_aplicacao.png) 
+![Print da Aplicação](./Print/Calculo_IMC.png) 
+
 
